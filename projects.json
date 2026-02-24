@@ -1,0 +1,23 @@
+[
+  {
+    "name": "timesheet",
+    "href": "../timesheet/",
+    "path": "/home/johnson/projects/timesheet",
+    "runCommand": "cd /home/johnson/projects/timesheet && npm install && NEXTAUTH_SECRET=secret AUTH_SECRET=secret npm run dev -- --port 3001",
+    "appUrl": "http://localhost/timesheet"
+  },
+  {
+    "name": "roomie",
+    "href": "../roomie/",
+    "path": "/home/johnson/projects/roomie",
+    "runCommand": "cd /home/johnson/projects/roomie && npm install && npx next dev -H 0.0.0.0 -p 3002",
+    "appUrl": "http://localhost/roomie"
+  },
+  {
+    "name": "eqinfo",
+    "href": "../eqinfo/",
+    "path": "/home/johnson/projects/eqinfo",
+    "runCommand": "cd /home/johnson/projects/eqinfo && npm install && NODE_PATH=./node_modules npx next dev --webpack -H 0.0.0.0 -p 3006",
+    "appUrl": "http://localhost/eqinfo"
+  }
+]
