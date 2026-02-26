@@ -26,14 +26,18 @@ body {
     color: var(--text-primary);
     min-height: 100vh;
     overflow-x: hidden;
-    background-color: var(--bg-primary);
+    background-color: transparent;
 }
 
 body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background: var(--bg-primary) url('/assets/bg.png') no-repeat center center / cover;
+    background-color: var(--bg-primary);
+    background-image: url('/assets/cloud_bg.jpg?v=5');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
     z-index: -2;
 }
 
@@ -41,7 +45,7 @@ body::after {
     content: '';
     position: fixed;
     inset: 0;
-    background: rgba(10, 10, 15, 0.82);
+    background: rgba(10, 10, 15, 0.8);
     z-index: -1;
 }
 
@@ -199,6 +203,19 @@ header {
     background: #f97316;
     color: #000;
     box-shadow: 0 0 15px rgba(249, 115, 22, 0.4);
+}
+
+/* Blue theme view-all-btn */
+.theme-blue .view-all-btn {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.5);
+    color: #3b82f6;
+}
+
+.theme-blue .view-all-btn:hover {
+    background: #3b82f6;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
 }
 
 /* ─── Carousel Wrapper ───────────────────────── */

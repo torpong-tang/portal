@@ -2,15 +2,31 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-// ── Cards background images (served from /public/assets/) ──
+// ── Cards background images (fallback if specific cover missing) ──
 const BG_IMAGES = [
     '/assets/img1.png',
     '/assets/img2.png',
     '/assets/img3.png',
-    '/assets/img4.png',
     '/assets/img5.png',
 ];
-const getBg = (i) => BG_IMAGES[i % BG_IMAGES.length];
+const getFallbackBg = (i) => BG_IMAGES[i % BG_IMAGES.length];
+
+const getProjectBg = (projName, index) => {
+    // กำหนดรูปภาพพื้นหลังให้ตรงกับความหมายของแต่ละ Project ตามที่คุณต้องการ
+    const specificCovers = {
+        'timesheet': '/assets/timesheet.png',
+        'roomie': '/assets/roomie.png',
+        'tika': '/assets/tika.png',
+        'easypro': '/assets/pmpro.png',
+        'kmiso': '/assets/kmiso.png',
+        'eqinfo': '/assets/eqinfo.png'
+    };
+
+    if (specificCovers[projName]) {
+        return specificCovers[projName];
+    }
+    return getFallbackBg(index);
+};
 
 // ── Close SVG ──
 const CloseIcon = () => (
@@ -180,7 +196,7 @@ function ProjectCard({ proj, index, actingOn, onRun, onStop, onOpen, onClick }) 
     return (
         <div
             className="card"
-            style={{ backgroundImage: `url('${getBg(index)}')` }}
+            style={{ backgroundImage: `url('${getProjectBg(proj.name, index)}')` }}
             onClick={onClick}
         >
             <div className="card-content">
@@ -286,10 +302,9 @@ export default function Home() {
         window.open(proj.appUrl || `http://localhost/${proj.name}`, '_blank');
     };
 
-    // Split into two sections (General & Specific) — show all in one if ≤ 6
-    const half = Math.ceil(allProjects.length / 2);
-    const section1 = allProjects.slice(0, half);
-    const section2 = allProjects.slice(half);
+    // Group projects based on their "group" property defined in projects.json
+    const section1 = allProjects.filter(p => p.group === 'general');
+    const section2 = allProjects.filter(p => p.group === 'specific');
 
     return (
         <div className="app-container">
@@ -312,18 +327,20 @@ export default function Home() {
                 </p>
             ) : (
                 <>
-                    <CarouselSection
-                        title="โปรเจกต์หลัก"
-                        projects={section1}
-                        themeBlue={true}
-                        onRun={handleRun}
-                        onStop={handleStop}
-                        onOpen={handleOpen}
-                        actingOn={actingOn}
-                    />
+                    {section1.length > 0 && (
+                        <CarouselSection
+                            title="บริการทั่วไป"
+                            projects={section1}
+                            themeBlue={true}
+                            onRun={handleRun}
+                            onStop={handleStop}
+                            onOpen={handleOpen}
+                            actingOn={actingOn}
+                        />
+                    )}
                     {section2.length > 0 && (
                         <CarouselSection
-                            title="โปรเจกต์เพิ่มเติม"
+                            title="บริการเฉพาะ"
                             projects={section2}
                             themeBlue={false}
                             onRun={handleRun}
