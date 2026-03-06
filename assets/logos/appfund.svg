@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="appfund logo">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0ea5e9"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#g)"/>
+  <path d="M26 78c16-26 35-40 76-42-18 12-33 27-46 52h-30z" fill="#ffffff" fill-opacity="0.2"/>
+  <text x="64" y="76" text-anchor="middle" font-family="Outfit,Segoe UI,sans-serif" font-size="44" font-weight="700" fill="#f8fafc">AF</text>
+</svg>

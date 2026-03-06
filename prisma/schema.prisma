@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model AppConfig {
+  id           Int       @id @default(autoincrement())
+  appName      String    @unique
+  showCard     Boolean   @default(true)
+  desiredState AppState  @default(RUN)
+  appGroup     String    @default("specific")
+  updatedAt    DateTime  @updatedAt
+}
+
+model AppVisitStat {
+  id          Int       @id @default(autoincrement())
+  appName     String    @unique
+  openCount   Int       @default(0)
+  lastOpenedAt DateTime?
+  updatedAt   DateTime  @updatedAt
+}
+
+model ActionLog {
+  id        Int      @id @default(autoincrement())
+  appName   String?
+  action    String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+enum AppState {
+  RUN
+  STOP
+}

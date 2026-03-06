@@ -1,0 +1,22 @@
+services:
+  portal-mysql:
+    image: mysql:8.4
+    container_name: portal-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root123456
+      MYSQL_DATABASE: portaldb
+      MYSQL_USER: portaladmin
+      MYSQL_PASSWORD: portaladmin123
+    ports:
+      - "3307:3306"
+    volumes:
+      - portal_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -proot123456 --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  portal_mysql_data:

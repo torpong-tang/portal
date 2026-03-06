@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal Test Results</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: rgba(30,41,59,0.5);
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --green: #22c55e;
+      --red: #ef4444;
+      --border: rgba(255,255,255,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 2rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem;
+      background: linear-gradient(to right, #fff, #bae6fd);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .summary { display: flex; gap: 1rem; margin: 1.5rem 0 2rem; flex-wrap: wrap; }
+    .stat { padding: 1rem 1.5rem; border-radius: 12px; font-weight: 600; font-size: 1.1rem;
+      backdrop-filter: blur(12px); border: 1px solid var(--border); }
+    .stat.total { background: rgba(56,189,248,0.1); color: #38bdf8; border-color: rgba(56,189,248,0.2); }
+    .stat.pass { background: rgba(34,197,94,0.1); color: var(--green); border-color: rgba(34,197,94,0.2); }
+    .stat.fail { background: rgba(239,68,68,0.1); color: var(--red); border-color: rgba(239,68,68,0.2); }
+    .test-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .test-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1.2rem;
+      background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+      transition: all 0.2s ease; }
+    .test-item:hover { background: rgba(51,65,85,0.6); }
+    .test-item.pass { border-left: 3px solid var(--green); }
+    .test-item.fail { border-left: 3px solid var(--red); }
+    .icon { font-size: 1.1rem; flex-shrink: 0; width: 24px; text-align: center; }
+    .icon.pass { color: var(--green); }
+    .icon.fail { color: var(--red); }
+    .test-name { flex: 1; font-size: 0.95rem; }
+    .test-time { font-family: 'Fira Code', monospace; font-size: 0.8rem; color: var(--muted); }
+    .test-error { font-family: 'Fira Code', monospace; font-size: 0.8rem; color: var(--red);
+      margin-top: 0.4rem; padding: 0.5rem 0.75rem; background: rgba(239,68,68,0.08);
+      border-radius: 6px; grid-column: 1 / -1; word-break: break-word; }
+    .test-item.fail .detail { display: flex; flex-direction: column; flex: 1; }
+    .timestamp { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
+    a.back { display: inline-block; margin-top: 2rem; color: #38bdf8; text-decoration: none;
+      padding: 0.6rem 1.2rem; border: 1px solid rgba(56,189,248,0.3); border-radius: 8px;
+      transition: all 0.2s ease; }
+    a.back:hover { background: rgba(56,189,248,0.1); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Portal Test Results</h1>
+    <p class="timestamp">Run at: 2/14/2026, 8:41:16 PM</p>
+    <div class="summary">
+      <div class="stat total">25 Total</div>
+      <div class="stat pass">25 Passed</div>
+      <div class="stat fail">0 Failed</div>
+    </div>
+    <div class="test-list">
+      
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">GET / returns index.html with correct content-type</span>
+          <span class="test-time">10ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">GET /index.html returns 200</span>
+          <span class="test-time">2ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">GET /index.css returns CSS with correct content-type</span>
+          <span class="test-time">1ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">GET /projects.json returns valid JSON array</span>
+          <span class="test-time">2ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">GET /nonexistent returns 404</span>
+          <span class="test-time">2ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">Path traversal blocked (/../etc/passwd)</span>
+          <span class="test-time">1ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">PNG logo served with correct MIME type (image/png)</span>
+          <span class="test-time">4ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">JPG logo served with correct MIME type (image/jpeg)</span>
+          <span class="test-time">2ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">SVG logo served with correct MIME type (image/svg+xml)</span>
+          <span class="test-time">2ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">PNG files are valid PNG format (not renamed JPEG)</span>
+          <span class="test-time">7ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">GET /api/status returns JSON object</span>
+          <span class="test-time">1ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">GET /api/status contains all projects from projects.json</span>
+          <span class="test-time">3ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">POST /api/run without name returns 400</span>
+          <span class="test-time">0ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">POST /api/run with unknown project returns 500</span>
+          <span class="test-time">2ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">POST /api/stop without name returns 400</span>
+          <span class="test-time">0ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">POST /api/stop on non-running project returns 200 with not-running message</span>
+          <span class="test-time">1ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">POST /api/run with invalid JSON body returns 500</span>
+          <span class="test-time">2ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">Each project in projects.json has required fields</span>
+          <span class="test-time">2ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">Project paths in projects.json point to existing directories</span>
+          <span class="test-time">2ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">index.html contains search input</span>
+          <span class="test-time">1ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">index.html contains grid section</span>
+          <span class="test-time">0ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">index.html contains refresh button</span>
+          <span class="test-time">1ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">index.html contains toast container</span>
+          <span class="test-time">1ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">index.html JS references correct logo order (PNG first)</span>
+          <span class="test-time">1ms</span>
+        </div>
+        <div class="test-item pass">
+          <span class="icon pass">&#10003;</span>
+          <span class="test-name">index.css has no invalid CSS syntax (group-hover)</span>
+          <span class="test-time">0ms</span>
+        </div>
+    </div>
+    <a class="back" href="/">Back to Portal</a>
+  </div>
+</body>
+</html>

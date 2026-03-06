@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "validate:projects": "node validate-projects.mjs",
+    "dev": "npm run validate:projects && next dev -H 0.0.0.0 -p 3000",
+    "build": "next build",
+    "start": "npm run validate:projects && next start -H 0.0.0.0 -p 3000",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.5.0",
+    "bcryptjs": "^2.4.3",
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "prisma": "^6.5.0"
+  }
+}
